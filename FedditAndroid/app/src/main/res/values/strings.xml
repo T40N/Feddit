@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">FedditAndroid</string>
+    <string name="feddit">Feddit</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="don_t_have_account_register_here">Don\'t have account? Register here!</string>
+    <string name="fullname">FullName</string>
+    <string name="register">Register</string>
+    <string name="have_a_account_already_login_here">Have a account already? Login here!</string>
 </resources>

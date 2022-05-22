@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "355679315865",
+    "project_id": "feddit-787fa",
+    "storage_bucket": "feddit-787fa.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:355679315865:android:93a3bcea98bc2076b6d508",
+        "android_client_info": {
+          "package_name": "com.example.fedditandroid"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "355679315865-qt549j02e1o821b95g4s4imaossurqe6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAIhtfSZwhG9YryyDSf4KQ2XLyBX48lgo4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "355679315865-qt549j02e1o821b95g4s4imaossurqe6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
