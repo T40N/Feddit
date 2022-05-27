@@ -6,6 +6,10 @@
         <entry key="..\:/Feddit/FedditAndroid/app/src/main/res/layout/activity_main.xml" value="0.36666666666666664" />
         <entry key="..\:/Feddit/FedditAndroid/app/src/main/res/layout/activity_main_page.xml" value="0.14437689969604864" />
         <entry key="..\:/Feddit/FedditAndroid/app/src/main/res/layout/activity_register_user.xml" value="0.25" />
+        <entry key="..\:/Feddit/FedditAndroid/app/src/main/res/layout/fragment_home_.xml" value="0.1762917933130699" />
+        <entry key="..\:/Feddit/FedditAndroid/app/src/main/res/layout/fragment_profile_.xml" value="0.1762917933130699" />
+        <entry key="..\:/Feddit/FedditAndroid/app/src/main/res/layout/header.xml" value="0.19947916666666668" />
+        <entry key="..\:/Feddit/FedditAndroid/app/src/main/res/menu/main_menu.xml" value="0.19947916666666668" />
       </map>
     </option>
   </component>
