@@ -12,11 +12,15 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 public class AddTask extends AppCompatActivity {
 
@@ -63,21 +67,21 @@ public class AddTask extends AppCompatActivity {
 
                 progressBar.setVisibility(View.VISIBLE);
 
-                String key = FirebaseDatabase.getInstance().getReference("Posts").push().getKey();
-                Post post = new Post(postTitleString, postTextString, userID);
-                FirebaseDatabase.getInstance().getReference("Posts").child(key).setValue(post)
-                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                Post post = new Post(postTitleString, postTextString, userID, 0);
+                FirebaseFirestore.getInstance().collection("Posts").add(post)
+                        .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                             @Override
-                            public void onComplete(@NonNull Task<Void> task) {
-                                if(task.isSuccessful()){
-                                    Toast.makeText(AddTask.this, "Post has been added successfully!", Toast.LENGTH_LONG).show();
-                                    progressBar.setVisibility(View.VISIBLE);
+                            public void onSuccess(DocumentReference documentReference) {
+                                Toast.makeText(AddTask.this, "Post has been added successfully!", Toast.LENGTH_LONG).show();
+                                progressBar.setVisibility(View.VISIBLE);
 
-                                    startActivity(new Intent(AddTask.this, MainPage.class));
-                                }else{
-                                    Toast.makeText(AddTask.this, "Something went wrong with adding a post.", Toast.LENGTH_LONG).show();
-                                    progressBar.setVisibility(View.GONE);
-                                }
+                                startActivity(new Intent(AddTask.this, MainPage.class));
+                            }
+                        }).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Toast.makeText(AddTask.this, "Something went wrong with adding a post.", Toast.LENGTH_LONG).show();
+                                progressBar.setVisibility(View.GONE);
                             }
                         });
             }

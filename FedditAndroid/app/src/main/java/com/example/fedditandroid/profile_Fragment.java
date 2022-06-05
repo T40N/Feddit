@@ -13,6 +13,10 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -20,11 +24,14 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 public class profile_Fragment extends Fragment {
 
     private FirebaseUser user;
-    private DatabaseReference reference;
+    private DocumentReference reference;
 
     private String userID;
 
@@ -45,25 +52,19 @@ public class profile_Fragment extends Fragment {
         logout = (Button) v.findViewById(R.id.profileLogoutID);
 
         user = FirebaseAuth.getInstance().getCurrentUser();
-        reference = FirebaseDatabase.getInstance().getReference("Users");
         userID = user.getUid();
+        reference = FirebaseFirestore.getInstance().collection("Users").document(userID);
 
-        reference.child(userID).addListenerForSingleValueEvent(new ValueEventListener() {
+        reference.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                User userProfile = snapshot.getValue(User.class);
-
-                if(userProfile != null){
-                    String fullName = userProfile.fullName;
-                    String email = userProfile.email;
-
-                    fullNameText.setText(fullName);
-                    emailText.setText(email);
-                }
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                User user = documentSnapshot.toObject(User.class);
+                fullNameText.setText(user.fullName);
+                emailText.setText(user.email);
             }
-
+        }).addOnFailureListener(new OnFailureListener() {
             @Override
-            public void onCancelled(@NonNull DatabaseError error) {
+            public void onFailure(@NonNull Exception e) {
                 Toast.makeText(getActivity(), "Something wrong happened!", Toast.LENGTH_LONG).show();
             }
         });

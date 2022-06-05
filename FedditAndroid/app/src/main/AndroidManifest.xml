@@ -10,6 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FedditAndroid">
         <activity
+            android:name=".NewComment"
+            android:exported="false" />
+        <activity
+            android:name=".PostInfo"
+            android:exported="false" />
+        <activity
             android:name=".AddTask"
             android:exported="false" />
         <activity
