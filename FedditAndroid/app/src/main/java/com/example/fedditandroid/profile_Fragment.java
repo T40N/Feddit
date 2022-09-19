@@ -37,6 +37,8 @@ public class profile_Fragment extends Fragment {
 
     private TextView fullNameText, emailText;
     private Button logout;
+    private Button viewPost;
+    private Button editData;
 
 
     @Override
@@ -50,6 +52,8 @@ public class profile_Fragment extends Fragment {
         fullNameText = (TextView) v.findViewById(R.id.profileFullNameID);
         emailText = (TextView) v.findViewById(R.id.profileEmailID);
         logout = (Button) v.findViewById(R.id.profileLogoutID);
+        viewPost = (Button) v.findViewById(R.id.viewPostBtnID);
+        editData = (Button) v.findViewById(R.id.editDataBtn);
 
         user = FirebaseAuth.getInstance().getCurrentUser();
         userID = user.getUid();
@@ -74,6 +78,20 @@ public class profile_Fragment extends Fragment {
             public void onClick(View view) {
                 FirebaseAuth.getInstance().signOut();
                 startActivity(new Intent(getActivity(), MainActivity.class));
+            }
+        });
+
+        viewPost.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(), activity_post_view.class));
+            }
+        });
+
+        editData.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(), activity_edit_data.class));
             }
         });
 

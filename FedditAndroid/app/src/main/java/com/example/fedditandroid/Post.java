@@ -2,7 +2,7 @@ package com.example.fedditandroid;
 
 public class Post {
     public String postTitle, postText, userPostID;
-    public int likeCounter;
+    public int likeCounter, commentCounter;
 
     public int getLikeCounter() {
         return likeCounter;
@@ -17,6 +17,7 @@ public class Post {
         this.postText = postText;
         this.userPostID = userPostID;
         this.likeCounter = likeCounter;
+
     }
 
     public Post() {
@@ -45,4 +46,5 @@ public class Post {
     public void setUserPostID(String userPostID) {
         this.userPostID = userPostID;
     }
+
 }
